@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +9,76 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="四則計算アプリ"
+        android:textSize="30sp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/textView1" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:id="@+id/number1"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="＋"
+        android:id="@+id/addSign"
+        android:layout_alignTop="@+id/number1"
+        android:layout_toEndOf="@+id/number1"
+        android:layout_marginStart="25dp" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="－"
+        android:id="@+id/deductSign"
+        android:layout_below="@+id/addSign"
+        android:layout_alignStart="@+id/addSign" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="×"
+        android:id="@+id/multipleSign"
+        android:layout_toEndOf="@+id/addSign"
+        android:layout_above="@+id/deductSign" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="÷"
+        android:id="@+id/divideSign"
+        android:layout_below="@+id/multipleSign"
+        android:layout_toEndOf="@+id/addSign" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:id="@+id/number2"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/multipleSign"
+        android:layout_toEndOf="@+id/multipleSign" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="計算結果表示"
+        android:textSize="25sp"
+        android:id="@+id/CalcButton"
+        android:layout_below="@+id/number1"
+        android:layout_marginTop="48dp"
+        android:layout_alignEnd="@+id/textView1"
+        android:layout_alignStart="@+id/textView1" />
+
+</RelativeLayout>
