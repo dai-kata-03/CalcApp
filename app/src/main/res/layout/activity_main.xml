@@ -81,4 +81,13 @@
         android:layout_alignEnd="@+id/textView1"
         android:layout_alignStart="@+id/textView1" />
 
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:id="@+id/message"
+        android:layout_below="@+id/CalcButton"
+        android:layout_alignStart="@+id/number1"
+        android:layout_marginTop="28dp"
+        android:layout_alignEnd="@+id/number2" />
+
 </RelativeLayout>
