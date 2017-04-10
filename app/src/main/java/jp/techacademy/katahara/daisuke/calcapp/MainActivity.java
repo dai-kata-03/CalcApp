@@ -15,11 +15,12 @@ import android.content.Intent;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // 変数
-    EditText mEditText1;
-    EditText mEditText2;
-    TextView mTextView;
-    double Result;
-    int CalcSign = 0;
+    EditText mEditText1; // 数値1
+    EditText mEditText2; // 数値2
+    TextView mTextView; // 第一画面のエラーメッセージ
+    double Result; // 計算結果
+    int CalcSign = 0; // 計算記号の保存
+    String NumValue; // 計算に進む前のエラーチェック
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button5.setOnClickListener(this);
 
         mEditText1 = (EditText) findViewById(R.id.number1);
-        mEditText1.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEditText1.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL); // マイナス、小数点入力あり
 
         mEditText2 = (EditText) findViewById(R.id.number2);
-        mEditText2.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEditText2.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED | InputType.TYPE_NUMBER_FLAG_DECIMAL); // マイナス、小数点入力あり
 
         mTextView = (TextView) findViewById(R.id.message);
 
@@ -54,93 +55,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        Log.d("GetID", String.valueOf(v.getId()));
-        Log.d("CalcSign", String.valueOf(CalcSign));
-
-       switch (v.getId()) {
+        switch (v.getId()) {
 
             case R.id.addSign:
                 CalcSign = v.getId();
-                Log.d("Dispatch", "Add");
+                ((EditText)findViewById(R.id.number2)).requestFocus(); // 計算記号選択後、数値2へカーソルを移動させる
                 break;
 
             case R.id.deductSign:
                 CalcSign = v.getId();
-                Log.d("Dispatch", "Deduct");
+                ((EditText)findViewById(R.id.number2)).requestFocus(); // 計算記号選択後、数値2へカーソルを移動させる
                 break;
 
             case R.id.multipleSign:
                 CalcSign = v.getId();
-                Log.d("Dispatch", "Multiple");
+                ((EditText)findViewById(R.id.number2)).requestFocus(); // 計算記号選択後、数値2へカーソルを移動させる
                 break;
 
             case R.id.divideSign:
                 CalcSign = v.getId();
-                Log.d("Dispatch", "Divide");
+                ((EditText)findViewById(R.id.number2)).requestFocus(); // 計算記号選択後、数値2へカーソルを移動させる
                 break;
 
             case R.id.CalcButton:
 
-                Log.d("Log","Error4");
-
                 String para1 = mEditText1.getText().toString();
                 String para2 = mEditText2.getText().toString();
 
-                Log.d("Log",para1);
-                Log.d("Log",para2);
-                Log.d("Log","Error5");
-
-                double pNumber1 = Double.valueOf(para1);
-                double pNumber2 = Double.valueOf(para2);
-
-                Log.d("Log",String.valueOf(pNumber1));
-                Log.d("Log", String.valueOf(pNumber2));
-                Log.d("Log","Error6");
-
-                Log.d("Sign", String.valueOf(R.id.multipleSign));
-                Log.d("pNumber1", String.valueOf(pNumber1));
-                Log.d("pNumber2", String.valueOf(pNumber2));
-                Log.d("Log","Error7");
-
                 if (CalcSign == 0) {
-                    Log.d("Log","Error1");
                     mTextView.setText("計算記号を指定してください。");
-                } else if (pNumber1 >=0 && pNumber2 >=0) {
-
-                    Log.d("Log","Error2");
-
-                    switch (CalcSign) {
-                        case R.id.addSign:
-                            Result = pNumber1 + pNumber2;
-                            Log.d("Dispatch", "Add2");
-                            break;
-                        case R.id.deductSign:
-                            Result = pNumber1 - pNumber2;
-                            Log.d("Dispatch", "Deduct2");
-                            break;
-                        case R.id.multipleSign:
-                            Result = pNumber1 * pNumber2;
-                            Log.d("Dispatch", "Multiple2");
-                            break;
-                        case R.id.divideSign:
-                            Result = pNumber1 / pNumber2;
-                            Log.d("Dispatch", "Divide2");
-
-                            break;
-                    }
-
-                    Log.d("Result",String.valueOf(Result));
-
-                    Intent intent = new Intent(this, SecondActivity.class);
-                    intent.putExtra("Result", Result);
-                    startActivity(intent);
                 } else {
 
-                    Log.d("Log","Error3");
-                    mTextView.setText("数字を入力してください。");
-                }
+                    NumValue = "";
 
-                break;
+                    if (para1 == null || para1.length() == 0 || para2 == null || para2.length() == 0) {
+                        NumValue = "Error";
+                    } else {
+                        NumValue = "GoToNext";
+                    }
+
+                    // 数値フィールドがNULLでも空でもない場合のみ、処理を先に進める。
+
+                    if (NumValue == "GoToNext") {
+
+
+                        double pNumber1 = Double.valueOf(para1);
+                        double pNumber2 = Double.valueOf(para2);
+
+                        switch (CalcSign) {
+                            case R.id.addSign:
+                                Result = pNumber1 + pNumber2;
+                                break;
+                            case R.id.deductSign:
+                                Result = pNumber1 - pNumber2;
+                                break;
+                            case R.id.multipleSign:
+                                Result = pNumber1 * pNumber2;
+                                break;
+                            case R.id.divideSign:
+                                Result = pNumber1 / pNumber2;
+                                break;
+                        }
+
+                        Intent intent = new Intent(this, SecondActivity.class);
+                        intent.putExtra("Result", Result);
+                        startActivity(intent);
+                    } else {
+                        mTextView.setText("数字を入力してください。");
+                    }
+                    break;
+                }
         }
+
     }
 }

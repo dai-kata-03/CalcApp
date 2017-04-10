@@ -37,7 +37,7 @@
         android:id="@+id/addSign"
         android:layout_alignTop="@+id/number1"
         android:layout_toEndOf="@+id/number1"
-        android:layout_marginStart="25dp" />
+        android:layout_marginStart="25dp"/>
 
     <Button
         android:layout_width="40dp"
@@ -45,7 +45,7 @@
         android:text="－"
         android:id="@+id/deductSign"
         android:layout_below="@+id/addSign"
-        android:layout_alignStart="@+id/addSign" />
+        android:layout_alignStart="@+id/addSign"/>
 
     <Button
         android:layout_width="40dp"
@@ -53,7 +53,7 @@
         android:text="×"
         android:id="@+id/multipleSign"
         android:layout_toEndOf="@+id/addSign"
-        android:layout_above="@+id/deductSign" />
+        android:layout_above="@+id/deductSign"/>
 
     <Button
         android:layout_width="40dp"
@@ -61,7 +61,7 @@
         android:text="÷"
         android:id="@+id/divideSign"
         android:layout_below="@+id/multipleSign"
-        android:layout_toEndOf="@+id/addSign" />
+        android:layout_toEndOf="@+id/addSign"/>
 
     <EditText
         android:layout_width="60dp"
@@ -70,7 +70,7 @@
         android:layout_marginStart="25dp"
         android:inputType="numberDecimal"
         android:layout_alignTop="@+id/multipleSign"
-        android:layout_toEndOf="@+id/multipleSign" />
+        android:layout_toEndOf="@+id/multipleSign"/>
 
     <Button
         android:layout_width="wrap_content"
