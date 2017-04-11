@@ -20,6 +20,15 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/textView1" />
 
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="数値1"
+        android:textSize="20sp"
+        android:layout_above="@+id/number2"
+        android:layout_marginBottom="14dp"
+        android:layout_alignStart="@+id/number1" />
+
     <EditText
         android:layout_width="60dp"
         android:layout_height="80dp"
@@ -35,9 +44,8 @@
         android:layout_height="40dp"
         android:text="＋"
         android:id="@+id/addSign"
-        android:layout_alignTop="@+id/number1"
-        android:layout_toEndOf="@+id/number1"
-        android:layout_marginStart="25dp"/>
+        android:layout_alignTop="@+id/number2"
+        android:layout_alignEnd="@+id/textView1" />
 
     <Button
         android:layout_width="40dp"
@@ -45,7 +53,7 @@
         android:text="－"
         android:id="@+id/deductSign"
         android:layout_below="@+id/addSign"
-        android:layout_alignStart="@+id/addSign"/>
+        android:layout_alignStart="@+id/addSign" />
 
     <Button
         android:layout_width="40dp"
@@ -53,43 +61,41 @@
         android:text="×"
         android:id="@+id/multipleSign"
         android:layout_toEndOf="@+id/addSign"
-        android:layout_above="@+id/deductSign"/>
+        android:layout_above="@+id/deductSign" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:text="÷"
         android:id="@+id/divideSign"
-        android:layout_below="@+id/multipleSign"
-        android:layout_toEndOf="@+id/addSign"/>
+        android:layout_toEndOf="@+id/deductSign"
+        android:layout_alignBottom="@+id/deductSign"
+        android:layout_below="@+id/addSign" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="数値2"
+        android:textSize="20sp"
+        android:layout_above="@+id/number2"
+        android:layout_marginBottom="14dp"
+        android:layout_alignStart="@+id/number2" />
 
     <EditText
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:id="@+id/number2"
-        android:layout_marginStart="25dp"
         android:inputType="numberDecimal"
-        android:layout_alignTop="@+id/multipleSign"
-        android:layout_toEndOf="@+id/multipleSign"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="計算結果表示"
-        android:textSize="25sp"
-        android:id="@+id/CalcButton"
-        android:layout_below="@+id/number1"
-        android:layout_marginTop="48dp"
-        android:layout_alignEnd="@+id/textView1"
-        android:layout_alignStart="@+id/textView1" />
+        android:layout_alignBottom="@+id/number1"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/number1" />
 
     <TextView
-        android:layout_width="60dp"
+        android:layout_width="200dp"
         android:layout_height="40dp"
         android:id="@+id/message"
-        android:layout_below="@+id/CalcButton"
-        android:layout_alignStart="@+id/number1"
-        android:layout_marginTop="28dp"
-        android:layout_alignEnd="@+id/number2" />
+        android:layout_marginTop="81dp"
+        android:layout_below="@+id/number1"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
